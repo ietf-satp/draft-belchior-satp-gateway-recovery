@@ -60,9 +60,31 @@ author:
 
 
 informative:
+  OIDC:
+    author:
+    - ins: N. Sakimura
+    - ins: J. Bradley
+    - ins: M. Jones
+    - ins: B. de Medeiros
+    - ins: C. Mortimore
+    date: November 2014
+    target: http://openid.net/specs/openid-connect-core-1_0.html
+    title: OpenID Connect Core 1.0
 
+  AD76:
+    author:
+    - ins: P. Alsberg
+    - ins: D. Day
+    date: 1976
+    target: http://openid.net/specs/openid-connect-core-1_0.html
+    title: A principle for resilient sharing of distributed resources
+    seriesInfo:
+      In Proc. of the 2nd Int. Conf. on Software Engineering
 
 normative:
+  TLS: RFC8446
+  HTTP2: RFC9113
+
 
 
 --- abstract
@@ -79,7 +101,7 @@ This memo describes the crash recovery mechanism for the Secure Asset Transfer P
 Gateway systems that perform digital asset transfers among networks must possess a degree of resiliency and fault tolerance in the face of possible crashes. Accounting for the possibility of crashes is
 particularly important to guarantee asset consistency across networks.
 
-The crash recovering mechanism is applied to a version of SATP using either 2PC or 3PC, which are atomic commitment protocol (ACP).
+The crash recovering mechanism is applied to a version of SATP {{?I-D.draft-ietf-satp-core}} using either 2PC or 3PC, which are atomic commitment protocol (ACP).
 2PC and 3PC considers two roles: a coordinator who manages the protocol's execution and participants who manage the resources that must be kept consistent. The origin gateway plays the ACP role of Coordinator, and the destination Gateway plays the Participant role in relay mode. Gateways exchange messages corresponding to the protocol execution, generating log entries for each one.
 The crash recovery draft does not depend on the specific SATP messages, but defines procedures to recover from crashes and for rollbacks, independently of the specific protocol phase being executed.
 
@@ -474,7 +496,7 @@ Gateways can fail by crashing (i.e., becoming silent). In order to be able to re
 
 1. Self-healing mode: assumes that after a crash, a gateway eventually recovers. The gateway does not lose its long-term keys (public-private key pair) and can reestablish all TLS connections.
 
-2. Primary-backup mode assumes that a gateway may never recover after a crash but that this failure can be detected by timeout. If the timeout is exceeded, a backup gateway detects that failure unequivocally and takes the role of the primary gateway. The failure is detected using heartbeat messages and a conservative period.
+2. Primary-backup mode assumes that a gateway may never recover after a crash but that this failure can be detected by timeout {{AD76}}. If the timeout is exceeded, a backup gateway detects that failure unequivocally and takes the role of the primary gateway. The failure is detected using heartbeat messages and a conservative period.
 
 In both modes, after a gateway recovers, the gateways follow a general recovery procedure (in Section 6.2 explained in detail for each phase):
 
@@ -853,13 +875,13 @@ This protocol aims to establish trust between gateways and the creation of a new
 The backup gateway, on its turn, defines gateways to replace it in case of a crash (X.509 certificate extensions).
 
 # Security Considerations
-We assume a trusted, authenticated, secure, reliable communication channel between gateways (i.e., messages cannot be spoofed and/or altered by an adversary) using TLS/HTTPS [TLS]. Clients support acceptable credential schemes such as OAuth2.0.
-We assume the storage service used provides the means necessary to assure the logs' confidentiality and integrity, stored and in transit. The service must provide an authentication and authorization scheme, e.g., based on OAuth and OIDC [OIDC], and use secure channels based on TLS/HTTPS [TLS].
+We assume a trusted, authenticated, secure, reliable communication channel between gateways (i.e., messages cannot be spoofed and/or altered by an adversary) using TLS/HTTPS {{TLS}}. Clients support acceptable credential schemes such as OAuth2.0.
+We assume the storage service used provides the means necessary to assure the logs' confidentiality and integrity, stored and in transit. The service must provide an authentication and authorization scheme, e.g., based on OAuth and OIDC {{OIDC}}, and use secure channels based on TLS/HTTPS.
 The present protocol is crash fault-tolerant, meaning that it handles gateways that crash for several reasons (e.g., power outage). The present protocol does not support Byzantine faults, where gateways can behave arbitrarily (including being malicious). This implies that both gateways are considered trusted. We assume logs are not tampered with or lost.
 
 Log entries need integrity, availability, and confidentiality guarantees, as they are an attractive point of attack. Every log entry contains a hash of its payload for guaranteeing integrity.  If extra guarantees are needed (e.g., non-repudiation),  a log entry might be signed by its creator. Availability is guaranteed by the usage of the log storage API that connects a gateway to a dependable storage (local, external, or decentralized). Each underlying storage provides different guarantees. Access control can be enforced via the access control profile that each log can have associated with, i.e., the profile can be resolved, indicating who can access the log entry in which condition. Access control profiles can be implemented with access control lists for simple authorization. The authentication of the entities accessing the logs is done at the Log Storage API level (e.g., username+password authentication in local storage vs. decentralized access control).
 
-For extra guarantees, the nodes running the log storage API (or the gateway nodes themselves) can be protected by hardening technologies such as Intel SGX [CD16].
+For extra guarantees, the nodes running the log storage API (or the gateway nodes themselves) can be protected by hardening technologies such as Intel SGX.
 
 
 
