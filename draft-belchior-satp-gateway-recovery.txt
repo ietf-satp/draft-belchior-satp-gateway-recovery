@@ -114,17 +114,18 @@ Table of Contents
    particularly important to guarantee asset consistency across
    networks.
 
-   The crash recovering mechanism is applied to a version of SATP using
-   either 2PC or 3PC, which are atomic commitment protocol (ACP). 2PC
-   and 3PC considers two roles: a coordinator who manages the protocol's
-   execution and participants who manage the resources that must be kept
-   consistent.  The origin gateway plays the ACP role of Coordinator,
-   and the destination Gateway plays the Participant role in relay mode.
-   Gateways exchange messages corresponding to the protocol execution,
-   generating log entries for each one.  The crash recovery draft does
-   not depend on the specific SATP messages, but defines procedures to
-   recover from crashes and for rollbacks, independently of the specific
-   protocol phase being executed.
+   The crash recovering mechanism is applied to a version of SATP
+   [I-D.draft-ietf-satp-core] using either 2PC or 3PC, which are atomic
+   commitment protocol (ACP). 2PC and 3PC considers two roles: a
+   coordinator who manages the protocol's execution and participants who
+   manage the resources that must be kept consistent.  The origin
+   gateway plays the ACP role of Coordinator, and the destination
+   Gateway plays the Participant role in relay mode.  Gateways exchange
+   messages corresponding to the protocol execution, generating log
+   entries for each one.  The crash recovery draft does not depend on
+   the specific SATP messages, but defines procedures to recover from
+   crashes and for rollbacks, independently of the specific protocol
+   phase being executed.
 
    Log entries are organized into logs.  Logs enable either the same or
    other backup gateways to resume any phase of SATP.  This log can also
@@ -580,11 +581,11 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
        connections.
 
    2.  Primary-backup mode assumes that a gateway may never recover
-       after a crash but that this failure can be detected by timeout.
-       If the timeout is exceeded, a backup gateway detects that failure
-       unequivocally and takes the role of the primary gateway.  The
-       failure is detected using heartbeat messages and a conservative
-       period.
+       after a crash but that this failure can be detected by timeout
+       [AD76].  If the timeout is exceeded, a backup gateway detects
+       that failure unequivocally and takes the role of the primary
+       gateway.  The failure is detected using heartbeat messages and a
+       conservative period.
 
    In both modes, after a gateway recovers, the gateways follow a
    general recovery procedure (in Section 6.2 explained in detail for
@@ -1037,18 +1038,18 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
 
    We assume a trusted, authenticated, secure, reliable communication
    channel between gateways (i.e., messages cannot be spoofed and/or
-   altered by an adversary) using TLS/HTTPS [TLS].  Clients support
-   acceptable credential schemes such as OAuth2.0.  We assume the
-   storage service used provides the means necessary to assure the logs'
-   confidentiality and integrity, stored and in transit.  The service
-   must provide an authentication and authorization scheme, e.g., based
-   on OAuth and OIDC [OIDC], and use secure channels based on TLS/HTTPS
-   [TLS].  The present protocol is crash fault-tolerant, meaning that it
-   handles gateways that crash for several reasons (e.g., power outage).
-   The present protocol does not support Byzantine faults, where
-   gateways can behave arbitrarily (including being malicious).  This
-   implies that both gateways are considered trusted.  We assume logs
-   are not tampered with or lost.
+   altered by an adversary) using TLS/HTTPS [TLS] [HTTP2].  Clients
+   support acceptable credential schemes such as OAuth2.0.  We assume
+   the storage service used provides the means necessary to assure the
+   logs' confidentiality and integrity, stored and in transit.  The
+   service must provide an authentication and authorization scheme,
+   e.g., based on OAuth and OIDC [OIDC], and use secure channels based
+   on TLS/HTTPS.  The present protocol is crash fault-tolerant, meaning
+   that it handles gateways that crash for several reasons (e.g., power
+   outage).  The present protocol does not support Byzantine faults,
+   where gateways can behave arbitrarily (including being malicious).
+   This implies that both gateways are considered trusted.  We assume
+   logs are not tampered with or lost.
 
    Log entries need integrity, availability, and confidentiality
    guarantees, as they are an attractive point of attack.  Every log
@@ -1068,7 +1069,7 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
 
    For extra guarantees, the nodes running the log storage API (or the
    gateway nodes themselves) can be protected by hardening technologies
-   such as Intel SGX [CD16].
+   such as Intel SGX.
 
 7.  Performance Considerations
 
@@ -1088,9 +1089,28 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
 
 9.  Informative References
 
-   [NIST]     Sakimura, N., Bradley, J., Jones, M., de Medeiros, B., and
+   [AD76]     Alsberg, P. and D. Day, "A principle for resilient sharing
+              of distributed resources", 1976,
+              <http://openid.net/specs/openid-connect-core-1_0.html>.
+
+   [HTTP2]    Thomson, M., Ed. and C. Benfield, Ed., "HTTP/2", RFC 9113,
+              DOI 10.17487/RFC9113, June 2022,
+              <https://www.rfc-editor.org/rfc/rfc9113>.
+
+   [I-D.draft-ietf-satp-core]
+              Hargreaves, M., Hardjono, T., and R. Belchior, "Secure
+              Asset Transfer Protocol (SATP)", Work in Progress,
+              Internet-Draft, draft-ietf-satp-core-02, 8 July 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-satp-
+              core-02>.
+
+   [OIDC]     Sakimura, N., Bradley, J., Jones, M., de Medeiros, B., and
               C. Mortimore, "OpenID Connect Core 1.0", November 2014,
               <http://openid.net/specs/openid-connect-core-1_0.html>.
+
+   [TLS]      Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
+              <https://www.rfc-editor.org/rfc/rfc8446>.
 
 Authors' Addresses
 
