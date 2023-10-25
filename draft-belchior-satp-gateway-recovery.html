@@ -1156,6 +1156,20 @@ svg :is([fill="white"], [fill^="#fff"]) {
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-satp-example" class="internal xref">SATP Example</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-log-storage-modes" class="internal xref">Log Storage Modes</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-log-storage-api" class="internal xref">Log Storage API</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4.2.1">
+                    <p id="section-toc.1-1.3.2.4.2.1.1"><a href="#section-3.4.1" class="auto internal xref">3.4.1</a>.  <a href="#name-response-codes" class="internal xref">Response codes</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-format-of-log-entries" class="internal xref">Format of log entries</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
@@ -1423,7 +1437,9 @@ This step generates a log entry (p1, 4, ack-validate).<a href="#section-3.1-3.4.
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-satp-example" class="section-name selfRef">SATP Example</a>
         </h3>
 <p id="section-3.2-1">This example showcases the logging procedure step 2.4 of SATP (lock-assertion) by both gateways.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.2-2">
+<div id="satp-example-lock-assertion">
+<figure id="figure-2">
+          <div class="alignLeft art-text artwork" id="section-3.2-2.1">
 <pre>
     ,----------.               ,----------.                                   ,-------.
      |Gateway G1|               |Gateway G2|                                   |Log API|
@@ -1464,52 +1480,61 @@ This step generates a log entry (p1, 4, ack-validate).<a href="#section-3.1-3.4.
      |Gateway G1|               |Gateway G2|                                   |Log API|
      `----------'               `----------'                                   `-------'
 
-~
-{: #satp-example-lock-assertion}
-
-## Log Storage Modes
-{: #log-storage-modes}
-
-Gateways store state that is captured by logs. Gateways have private logs recording enterprise-sensitive data that can be used, for instance, for analytics. Entries can include end-to-end cross-jurisdiction transaction latency and throughput.
-
-Apart from the enterprise log, a state log can be public or private, centralized or decentralized. This log is meant to be shared with everyone with an internet connection (public) or only within the gateway consortium (private). Logs can be stored locally or in a cloud service, per gateway (centralized), or in a decentralized infrastructure (i.e., decentralized ledger, decentralized database). We call the latter option decentralized log storage. The type of the state log depends on the trust assumptions among gateways and the log access mode.
-
-
-In greater detail:
-
-1. Public decentralized log: log entries are stored on a decentralized public log (e.g., Ethereum blockchain, IPFS). Each gateway writes non-encrypted log entries to a decentralized log storage.
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a></figcaption></figure>
+</div>
+</section>
+</div>
+<div id="log-storage-modes">
+<section id="section-3.3">
+        <h3 id="name-log-storage-modes">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-log-storage-modes" class="section-name selfRef">Log Storage Modes</a>
+        </h3>
+<p id="section-3.3-1">Gateways store state that is captured by logs. Gateways have private logs recording enterprise-sensitive data that can be used, for instance, for analytics. Entries can include end-to-end cross-jurisdiction transaction latency and throughput.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">Apart from the enterprise log, a state log can be public or private, centralized or decentralized. This log is meant to be shared with everyone with an internet connection (public) or only within the gateway consortium (private). Logs can be stored locally or in a cloud service, per gateway (centralized), or in a decentralized infrastructure (i.e., decentralized ledger, decentralized database). We call the latter option decentralized log storage. The type of the state log depends on the trust assumptions among gateways and the log access mode.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">In greater detail:<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.3-4">
+<li id="section-3.3-4.1">
+            <p id="section-3.3-4.1.1">Public decentralized log: log entries are stored on a decentralized public log (e.g., Ethereum blockchain, IPFS). Each gateway writes non-encrypted log entries to a decentralized log storage.
 Although this is the best option for providing accountability of gateways, availability, and integrity of the logs, leading to shorter dispute resolution, this can lead to leak of information which can lead to privacy issues.
 The integrity of the log can be asserted by hashing the entries and comparing it to each stored hash on the decentralized log storage.
 A solution to the privacy problems could be given by gateways publishing a hash of the log entry plus metadata to the decentralized log storage instead of the log entries. Although this is a first step towards resolving privacy issues, a tradeoff with data availability exists.
 In particular, this choice leads to lower availability guarantees since a gateway needs to wait for the counterparty gateway to deliver the logs in case logs need to be shared. In this case, the decentralized log storage acts as a notarizing service.
 This mode is recommended when gateways operate in the  Relay Mode: Client-initiated Gateway to Gateway. This mode can also be used by the Direct Mode: Client to Multiple Gateway access mode because gateways may need to share state between themselves.
-Note: the difference between the mentioned modes is that in Direct Mode: Client to Multiple Gateway, a single client/organization controls all the gateways, whereas, in the Relay Mode, gateways are controlled by different organizations.
-
-2. Public centralized log: log entries are published in a bulletin that more organizations control. That bulletin can be updated or removed at any time. Accountability is only guaranteed provided that there are multiple copies of such bulletin by conflicting parties.
-Availability and integrity can be obtained via redundancy.
-
-3. Private centralized log. Each gateway stores logs locally or in a cloud in the private log storage mode but does not share them by default with other gateways. If needed, logs are requested from the counterparty gateway.
+Note: the difference between the mentioned modes is that in Direct Mode: Client to Multiple Gateway, a single client/organization controls all the gateways, whereas, in the Relay Mode, gateways are controlled by different organizations.<a href="#section-3.3-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.3-4.2">
+            <p id="section-3.3-4.2.1">Public centralized log: log entries are published in a bulletin that more organizations control. That bulletin can be updated or removed at any time. Accountability is only guaranteed provided that there are multiple copies of such bulletin by conflicting parties.
+Availability and integrity can be obtained via redundancy.<a href="#section-3.3-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.3-4.3">
+            <p id="section-3.3-4.3.1">Private centralized log. Each gateway stores logs locally or in a cloud in the private log storage mode but does not share them by default with other gateways. If needed, logs are requested from the counterparty gateway.
 Saving logs locally is faster than saving them on the respective ledger since issuing a transaction is several orders of magnitude slower than writing on a disk or accessing a cloud service.
-Nonetheless, this model delivers weaker integrity and availability guarantees.
-
-4. Private decentralized log. Each gateway stores logs in a private blockchain, and are shared with other gateways by default.
-
-Each log storage mode provides a different process to recover the state from crashes. In the private log, a gateway requires the most recent log from the counterparty gateway. This mode is the one where the most trust is needed.
+Nonetheless, this model delivers weaker integrity and availability guarantees.<a href="#section-3.3-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.3-4.4">
+            <p id="section-3.3-4.4.1">Private decentralized log. Each gateway stores logs in a private blockchain, and are shared with other gateways by default.<a href="#section-3.3-4.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ol>
+<p id="section-3.3-5">Each log storage mode provides a different process to recover the state from crashes. In the private log, a gateway requires the most recent log from the counterparty gateway. This mode is the one where the most trust is needed.
 The gateway publishes hashes of log entries and metadata on a decentralized log storage in the centralized public log. Gateways who need the logs request them from other gateways and perform integrity checks of the received logs.
-In the public decentralized mode, the gateways publish the plain log entries on decentralized log storage. This is the most trustless and decentralized mode of operation.
-
-By default, if there are gateways from different institutions involved in an asset transfer, the storage mode should be a decentralized log storage. The decentralized log storage can provide a common source of truth to solve disputes and maintain a shared state, alleviating trust assumptions between gateways.
-
-
-## Log Storage API
-{: #log-storage-api}
-
-The log storage API allows developers to be abstracted from the log storage support, providing a standardized way
-to interact with logs (e.g., relational vs. non-relational, local vs. on-chain). It also handles access control if needed.
-
-</pre><a href="#section-3.2-2" class="pilcrow">¶</a>
+In the public decentralized mode, the gateways publish the plain log entries on decentralized log storage. This is the most trustless and decentralized mode of operation.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
+<p id="section-3.3-6">By default, if there are gateways from different institutions involved in an asset transfer, the storage mode should be a decentralized log storage. The decentralized log storage can provide a common source of truth to solve disputes and maintain a shared state, alleviating trust assumptions between gateways.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
+</section>
 </div>
-<p id="section-3.2-3">+---------------------------------------+----------------------------------+------------------------------------------------------------------------+
+<div id="log-storage-api">
+<section id="section-3.4">
+        <h3 id="name-log-storage-api">
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-log-storage-api" class="section-name selfRef">Log Storage API</a>
+        </h3>
+<p id="section-3.4-1">The log storage API allows developers to be abstracted from the log storage support, providing a standardized way
+to interact with logs (e.g., relational vs. non-relational, local vs. on-chain). It also handles access control if needed.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<div id="api-table">
+<figure id="figure-3">
+          <div class="alignLeft art-text artwork" id="section-3.4-2.1">
+<pre>
++---------------------------------------+----------------------------------+------------------------------------------------------------------------+
 | Function                              | Parameters                       | Endpoint                                                               |
 +---------------------------------------+----------------------------------+------------------------------------------------------------------------+
 | Append log entry                      | logId - log entry to be appended | POST / writeLogEntry/:logId Host: example.org Accept: application/json |
@@ -1524,16 +1549,18 @@ to interact with logs (e.g., relational vs. non-relational, local vs. on-chain).
 | Obtains the last log entry            | None                             | GET getLastEntry Host: example.org                                     |
 +---------------------------------------+----------------------------------+------------------------------------------------------------------------+
 | Obtains the whole log                 | None                             | GET getLog Host: example.org                                           |
-+---------------------------------------+----------------------------------+------------------------------------------------------------------------+<a href="#section-3.2-3" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.2-4">
-<pre>
-{: #api-table}
++---------------------------------------+----------------------------------+------------------------------------------------------------------------+
 
-The following table maps the respective return values and response examples:
-
-</pre><a href="#section-3.2-4" class="pilcrow">¶</a>
+</pre>
 </div>
-<p id="section-3.2-5">+---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a></figcaption></figure>
+</div>
+<p id="section-3.4-3">The following table maps the respective return values and response examples:<a href="#section-3.4-3" class="pilcrow">¶</a></p>
+<div id="return-values-api-table">
+<figure id="figure-4">
+          <div class="alignLeft art-text artwork" id="section-3.4-4.1">
+<pre>
++---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Returns                         | Response Example                                                                                                                                      |
 +=================================+=======================================================================================================================================================+
 | The entry index of the last log | HTTP/1.1 200 OK Cache-Control: private Date: Mon, 02 Mar 2020 05:07:35 GMT Content-Type: application/json { "success": true, "response_data":"2" }    |
@@ -1549,90 +1576,124 @@ The following table maps the respective return values and response examples:
 | A log entry                     | HTTP/1.1 200 OK Cache-Control: private Date: Mon, 02 Mar 2020 05:07:35 GMT Content-Type: application/json { "success": true, "response_data": {...} } |
 +---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 | The log                         | HTTP/1.1 200 OK Cache-Control: private Date: Mon, 02 Mar 2020 05:07:35 GMT Content-Type: application/json { "success": true, "response_data": {...} } |
-+---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+<a href="#section-3.2-5" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.2-6">
-<pre>
-{: #return-values-api-table}
++---------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-
-### Response codes
-{: #response-codes}
-
-The log storage API  MUST respond with return codes indicating the failure (error 5XX) or success of the operation (200). The application may carry out a further operation in the future to determine the ultimate status of the operation.
-
-The log storage API response is in JSON format and contains two fields: 1) success: true if the operation was successful, and 2) response_data: contains the payload of the response generated by the log storage API.
-
-## Format of log entries
-{: #format}
-
-A gateway stores the log entries in its log, and they capture gateways operations. Entries account for the current status of one of the three SATP flows: Transfer Initiation flow, Lock-Evidence flow, and Commitment Establishment flow.
-
-The recommended format for log entries is JSON, with protocol-specific mandatory fields supporting a free format field for plaintext or encrypted payloads directed at the SATP gateway or an underlying network. Although the recommended format is JSON, other formats can be used (e.g., XML).
-
-The mandatory fields of a log entry, that SATP generates, are:
-
-- Version: SATP protocol Version (major, minor).
-
-- Session ID: a unique identifier (UUIDv2) representing a session.
-
-- Sequence Number: monotonically increasing counter that uniquely represents a message from a session.
-
-- SATP Phase: current SATP phase.
-
-- Resource URL: Location of Resource to be accessed.
-
-- Developer URN: Assertion of developer/application identity.
-
-- Action/Response: GET/POST and arguments (or Response Code).
-
-- Credential Profile: Specify the type of auth (e.g., SAML, OAuth, X.509)
-
-- Credential Block: Credential token, certificate, string.
-
-- Payload Profile: Asset Profile provenance and capabilities.
-
-- Application Profile: Vendor or Application-specific profile.
-
-- Payload: Payload for POST, responses, and native network transactions. The payload is specific to the current SATP phase.
-
-- Payload Hash: hash of the current message payload.
-
-In addition to the attributes that belong to SATP s schema, each log entry REQUIRES the following attributes:
-
-- timestamp REQUIRED: timestamp referring to when the log entry was generated (UNIX format).
-
-- origin_gateway_pubkey REQUIRED: the public key of the gateway initiating a transfer.
-
-- origin_gateway_system REQUIRED: the ID  of the source network.
-
-- destination_gateway_pubkey REQUIRED: the public key of the gateway involved in a transfer.
-
-- destination_gateway_system REQUIRED: the ID of the destination Gateway involved in a transfer.
-
-- logging_profile REQUIRED: contains the profile regarding the logging procedure. Default is a local store.
-
-- Message_signature REQUIRED: Gateway EDCSA signature over the log entry.
-
-- Last_entry_hash REQUIRED: Hash of previous log entry.
-
-- Access_control_profile REQUIRED: the profile regarding the confidentiality of the log entries being stored. Default is only the gateway that created the logs that can access them.
-
-- Operation: the high-level operation being executed by the gateway on that step.
-  There are five types of operations: Operation init- states the intention of a node to execute a particular operation; Operation exec- expresses that the node is executing the operation; Operation done- states when a node successfully executes a step of the protocol;
-  Operation ack- refers to when a node acknowledges a message received from another (e.g., the command executed); Operation fail- occurs when an agent fails to execute a specific step.
-
-Optional field entries are:
-
-- recovery message: the type of recovery message, if the gateway is involved in a recovery procedure.
-
-- recovery payload: the payload associated with the recovery message.
-
-Example of a log entry created by G1, corresponding to locking an asset (phase 2.3 of the SATP protocol):
-
-</pre><a href="#section-3.2-6" class="pilcrow">¶</a>
+</pre>
 </div>
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a></figcaption></figure>
+</div>
+<div id="response-codes">
+<section id="section-3.4.1">
+          <h4 id="name-response-codes">
+<a href="#section-3.4.1" class="section-number selfRef">3.4.1. </a><a href="#name-response-codes" class="section-name selfRef">Response codes</a>
+          </h4>
+<p id="section-3.4.1-1">The log storage API  MUST respond with return codes indicating the failure (error 5XX) or success of the operation (200). The application may carry out a further operation in the future to determine the ultimate status of the operation.<a href="#section-3.4.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.4.1-2">The log storage API response is in JSON format and contains two fields: 1) success: true if the operation was successful, and 2) response_data: contains the payload of the response generated by the log storage API.<a href="#section-3.4.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="format-of-log-entries">
+<section id="section-3.5">
+        <h3 id="name-format-of-log-entries">
+<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-format-of-log-entries" class="section-name selfRef">Format of log entries</a>
+        </h3>
+<div id="format">
+<p id="section-3.5-1">A gateway stores the log entries in its log, and they capture gateways operations. Entries account for the current status of one of the three SATP flows: Transfer Initiation flow, Lock-Evidence flow, and Commitment Establishment flow.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+</div>
+<p id="section-3.5-2">The recommended format for log entries is JSON, with protocol-specific mandatory fields supporting a free format field for plaintext or encrypted payloads directed at the SATP gateway or an underlying network. Although the recommended format is JSON, other formats can be used (e.g., XML).<a href="#section-3.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.5-3">The mandatory fields of a log entry, that SATP generates, are:<a href="#section-3.5-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.5-4.1">
+            <p id="section-3.5-4.1.1">Version: SATP protocol Version (major, minor).<a href="#section-3.5-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.2">
+            <p id="section-3.5-4.2.1">Session ID: a unique identifier (UUIDv2) representing a session.<a href="#section-3.5-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.3">
+            <p id="section-3.5-4.3.1">Sequence Number: monotonically increasing counter that uniquely represents a message from a session.<a href="#section-3.5-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.4">
+            <p id="section-3.5-4.4.1">SATP Phase: current SATP phase.<a href="#section-3.5-4.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.5">
+            <p id="section-3.5-4.5.1">Resource URL: Location of Resource to be accessed.<a href="#section-3.5-4.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.6">
+            <p id="section-3.5-4.6.1">Developer URN: Assertion of developer/application identity.<a href="#section-3.5-4.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.7">
+            <p id="section-3.5-4.7.1">Action/Response: GET/POST and arguments (or Response Code).<a href="#section-3.5-4.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.8">
+            <p id="section-3.5-4.8.1">Credential Profile: Specify the type of auth (e.g., SAML, OAuth, X.509)<a href="#section-3.5-4.8.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.9">
+            <p id="section-3.5-4.9.1">Credential Block: Credential token, certificate, string.<a href="#section-3.5-4.9.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.10">
+            <p id="section-3.5-4.10.1">Payload Profile: Asset Profile provenance and capabilities.<a href="#section-3.5-4.10.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.11">
+            <p id="section-3.5-4.11.1">Application Profile: Vendor or Application-specific profile.<a href="#section-3.5-4.11.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.12">
+            <p id="section-3.5-4.12.1">Payload: Payload for POST, responses, and native network transactions. The payload is specific to the current SATP phase.<a href="#section-3.5-4.12.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-4.13">
+            <p id="section-3.5-4.13.1">Payload Hash: hash of the current message payload.<a href="#section-3.5-4.13.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.5-5">In addition to the attributes that belong to SATP s schema, each log entry REQUIRES the following attributes:<a href="#section-3.5-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.5-6.1">
+            <p id="section-3.5-6.1.1">timestamp REQUIRED: timestamp referring to when the log entry was generated (UNIX format).<a href="#section-3.5-6.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-6.2">
+            <p id="section-3.5-6.2.1">origin_gateway_pubkey REQUIRED: the public key of the gateway initiating a transfer.<a href="#section-3.5-6.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-6.3">
+            <p id="section-3.5-6.3.1">origin_gateway_system REQUIRED: the ID  of the source network.<a href="#section-3.5-6.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-6.4">
+            <p id="section-3.5-6.4.1">destination_gateway_pubkey REQUIRED: the public key of the gateway involved in a transfer.<a href="#section-3.5-6.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-6.5">
+            <p id="section-3.5-6.5.1">destination_gateway_system REQUIRED: the ID of the destination Gateway involved in a transfer.<a href="#section-3.5-6.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-6.6">
+            <p id="section-3.5-6.6.1">logging_profile REQUIRED: contains the profile regarding the logging procedure. Default is a local store.<a href="#section-3.5-6.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-6.7">
+            <p id="section-3.5-6.7.1">Message_signature REQUIRED: Gateway EDCSA signature over the log entry.<a href="#section-3.5-6.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-6.8">
+            <p id="section-3.5-6.8.1">Last_entry_hash REQUIRED: Hash of previous log entry.<a href="#section-3.5-6.8.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-6.9">
+            <p id="section-3.5-6.9.1">Access_control_profile REQUIRED: the profile regarding the confidentiality of the log entries being stored. Default is only the gateway that created the logs that can access them.<a href="#section-3.5-6.9.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-6.10">
+            <p id="section-3.5-6.10.1">Operation: the high-level operation being executed by the gateway on that step.
+There are five types of operations: Operation init- states the intention of a node to execute a particular operation; Operation exec- expresses that the node is executing the operation; Operation done- states when a node successfully executes a step of the protocol;
+Operation ack- refers to when a node acknowledges a message received from another (e.g., the command executed); Operation fail- occurs when an agent fails to execute a specific step.<a href="#section-3.5-6.10.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.5-7">Optional field entries are:<a href="#section-3.5-7" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.5-8.1">
+            <p id="section-3.5-8.1.1">recovery message: the type of recovery message, if the gateway is involved in a recovery procedure.<a href="#section-3.5-8.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.5-8.2">
+            <p id="section-3.5-8.2.1">recovery payload: the payload associated with the recovery message.<a href="#section-3.5-8.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.5-9">Example of a log entry created by G1, corresponding to locking an asset (phase 2.3 of the SATP protocol):<a href="#section-3.5-9" class="pilcrow">¶</a></p>
 <div id="example-log-entry">
-<p id="section-3.2-7">{
+<figure id="figure-5">
+          <div class="alignLeft art-text artwork" id="section-3.5-10.1">
+<pre>
+{
   "Version": "1.0",
   "Session ID": "123e4567-e89b-12d3-a456-426655440000",
   "Sequence Number": 1,
@@ -1659,12 +1720,14 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
   "recovery message": "recovery_message_here",
   "recovery payload": "recovery_payload_here"
 }
-~~~<a href="#section-3.2-7" class="pilcrow">¶</a></p>
+</pre>
 </div>
-<p id="section-3.2-8">Example of a log entry created by G2, acknowledging G1 locking an asset (phase 2.4 of the SATP protocol) :<a href="#section-3.2-8" class="pilcrow">¶</a></p>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a></figcaption></figure>
+</div>
+<p id="section-3.5-11">Example of a log entry created by G2, acknowledging G1 locking an asset (phase 2.4 of the SATP protocol) :<a href="#section-3.5-11" class="pilcrow">¶</a></p>
 <div id="example-log-entry-two">
-<figure id="figure-2">
-          <div class="alignLeft art-text artwork" id="section-3.2-9.1">
+<figure id="figure-6">
+          <div class="alignLeft art-text artwork" id="section-3.5-12.1">
 <pre>
 {
     "sessionId": "4eb424c8-aead-4e9e-a321-a160ac3909ac",
@@ -1682,7 +1745,7 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
 }
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a></figcaption></figure>
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a></figcaption></figure>
 </div>
 </section>
 </div>
