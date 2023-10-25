@@ -526,7 +526,7 @@ Optional field entries are:
 
 Example of a log entry created by G1, corresponding to locking an asset (phase 2.3 of the SATP protocol):
 
-   /{ "Version": "1.0", "Session ID": "123e4567-e89b-
+   { "Version": "1.0", "Session ID": "123e4567-e89b-
    12d3-a456-426655440000", "Sequence Number": 1, "SATP Phase":
    "Initialization", "Resource URL": "http://myresource.com", "Developer
    URN": "urn:myapp:developerid", "Action/Response": "POST /myresource",
@@ -541,7 +541,7 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
    "Last_entry_hash": "hash_of_last_entry", "Access_control_profile":
    "GatewayOnly", "Operation": "init", "recovery message":
    "recovery_message_here", "recovery payload": "recovery_payload_here"
-   /} ~~~
+   } ~~~
 
    Example of a log entry created by G2, acknowledging G1 locking an
    asset (phase 2.4 of the SATP protocol) :
@@ -1040,18 +1040,18 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
 
    We assume a trusted, authenticated, secure, reliable communication
    channel between gateways (i.e., messages cannot be spoofed and/or
-   altered by an adversary) using TLS/HTTPS [TLS] [HTTP2].  Clients
-   support acceptable credential schemes such as OAuth2.0.  We assume
-   the storage service used provides the means necessary to assure the
-   logs' confidentiality and integrity, stored and in transit.  The
-   service must provide an authentication and authorization scheme,
-   e.g., based on OAuth and OIDC [OIDC], and use secure channels based
-   on TLS/HTTPS.  The present protocol is crash fault-tolerant, meaning
-   that it handles gateways that crash for several reasons (e.g., power
-   outage).  The present protocol does not support Byzantine faults,
-   where gateways can behave arbitrarily (including being malicious).
-   This implies that both gateways are considered trusted.  We assume
-   logs are not tampered with or lost.
+   altered by an adversary) using TLS/HTTPS [TLS].  Clients support
+   acceptable credential schemes such as OAuth2.0.  We assume the
+   storage service used provides the means necessary to assure the logs'
+   confidentiality and integrity, stored and in transit.  The service
+   must provide an authentication and authorization scheme, e.g., based
+   on OAuth and OIDC [OIDC], and use secure channels based on TLS/HTTPS.
+   The present protocol is crash fault-tolerant, meaning that it handles
+   gateways that crash for several reasons (e.g., power outage).  The
+   present protocol does not support Byzantine faults, where gateways
+   can behave arbitrarily (including being malicious).  This implies
+   that both gateways are considered trusted.  We assume logs are not
+   tampered with or lost.
 
    Log entries need integrity, availability, and confidentiality
    guarantees, as they are an attractive point of attack.  Every log

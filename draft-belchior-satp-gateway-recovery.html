@@ -1632,7 +1632,7 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
 </pre><a href="#section-3.2-6" class="pilcrow">¶</a>
 </div>
 <div id="example-log-entry">
-<p id="section-3.2-7">/{
+<p id="section-3.2-7">{
   "Version": "1.0",
   "Session ID": "123e4567-e89b-12d3-a456-426655440000",
   "Sequence Number": 1,
@@ -1658,7 +1658,7 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
   "Operation": "init",
   "recovery message": "recovery_message_here",
   "recovery payload": "recovery_payload_here"
-/}
+}
 ~~~<a href="#section-3.2-7" class="pilcrow">¶</a></p>
 </div>
 <p id="section-3.2-8">Example of a log entry created by G2, acknowledging G1 locking an asset (phase 2.4 of the SATP protocol) :<a href="#section-3.2-8" class="pilcrow">¶</a></p>
@@ -2214,7 +2214,7 @@ This protocol aims to establish trust between gateways and the creation of a new
       <h2 id="name-security-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-6-1">We assume a trusted, authenticated, secure, reliable communication channel between gateways (i.e., messages cannot be spoofed and/or altered by an adversary) using TLS/HTTPS <span>[<a href="#TLS" class="cite xref">TLS</a>]</span> <span>[<a href="#HTTP2" class="cite xref">HTTP2</a>]</span>. Clients support acceptable credential schemes such as OAuth2.0.
+<p id="section-6-1">We assume a trusted, authenticated, secure, reliable communication channel between gateways (i.e., messages cannot be spoofed and/or altered by an adversary) using TLS/HTTPS <span>[<a href="#TLS" class="cite xref">TLS</a>]</span>. Clients support acceptable credential schemes such as OAuth2.0.
 We assume the storage service used provides the means necessary to assure the logs' confidentiality and integrity, stored and in transit. The service must provide an authentication and authorization scheme, e.g., based on OAuth and OIDC <span>[<a href="#OIDC" class="cite xref">OIDC</a>]</span>, and use secure channels based on TLS/HTTPS.
 The present protocol is crash fault-tolerant, meaning that it handles gateways that crash for several reasons (e.g., power outage). The present protocol does not support Byzantine faults, where gateways can behave arbitrarily (including being malicious). This implies that both gateways are considered trusted. We assume logs are not tampered with or lost.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">Log entries need integrity, availability, and confidentiality guarantees, as they are an attractive point of attack. Every log entry contains a hash of its payload for guaranteeing integrity.  If extra guarantees are needed (e.g., non-repudiation),  a log entry might be signed by its creator. Availability is guaranteed by the usage of the log storage API that connects a gateway to a dependable storage (local, external, or decentralized). Each underlying storage provides different guarantees. Access control can be enforced via the access control profile that each log can have associated with, i.e., the profile can be resolved, indicating who can access the log entry in which condition. Access control profiles can be implemented with access control lists for simple authorization. The authentication of the entities accessing the logs is done at the Log Storage API level (e.g., username+password authentication in local storage vs. decentralized access control).<a href="#section-6-2" class="pilcrow">¶</a></p>
