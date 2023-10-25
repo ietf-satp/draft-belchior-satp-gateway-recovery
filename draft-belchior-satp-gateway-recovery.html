@@ -1595,14 +1595,12 @@ to interact with logs (e.g., relational vs. non-relational, local vs. on-chain).
 </div>
 </section>
 </div>
-<div id="format-of-log-entries">
+<div id="format">
 <section id="section-4">
       <h2 id="name-format-of-log-entries">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-format-of-log-entries" class="section-name selfRef">Format of Log Entries</a>
       </h2>
-<div id="format">
 <p id="section-4-1">A gateway stores the log entries in its log, and they capture gateways operations. Entries account for the current status of one of the three SATP flows: Transfer Initiation flow, Lock-Evidence flow, and Commitment Establishment flow.<a href="#section-4-1" class="pilcrow">¶</a></p>
-</div>
 <p id="section-4-2">The recommended format for log entries is JSON, with protocol-specific mandatory fields supporting a free format field for plaintext or encrypted payloads directed at the SATP gateway or an underlying network. Although the recommended format is JSON, other formats can be used (e.g., XML).<a href="#section-4-2" class="pilcrow">¶</a></p>
 <p id="section-4-3">The mandatory fields of a log entry, that SATP generates, are:<a href="#section-4-3" class="pilcrow">¶</a></p>
 <ul class="normal">
