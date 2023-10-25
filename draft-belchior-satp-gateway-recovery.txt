@@ -522,7 +522,7 @@ Optional field entries are:
 
 Example of a log entry created by G1, corresponding to locking an asset (phase 2.3 of the SATP protocol):
 
-   "Version": "1.0", "Session ID": "123e4567-e89b-
+   /{ "Version": "1.0", "Session ID": "123e4567-e89b-
    12d3-a456-426655440000", "Sequence Number": 1, "SATP Phase":
    "Initialization", "Resource URL": "http://myresource.com", "Developer
    URN": "urn:myapp:developerid", "Action/Response": "POST /myresource",
@@ -537,17 +537,27 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
    "Last_entry_hash": "hash_of_last_entry", "Access_control_profile":
    "GatewayOnly", "Operation": "init", "recovery message":
    "recovery_message_here", "recovery payload": "recovery_payload_here"
+   /} ~~~
 
-{: #example-log-entry}
+   Example of a log entry created by G2, acknowledging G1 locking an
+   asset (phase 2.4 of the SATP protocol) :
 
-Example of a log entry created by G2, acknowledging G1 locking an asset (phase 2.4 of the SATP protocol) :
+   {
+       "sessionId": "4eb424c8-aead-4e9e-a321-a160ac3909ac",
+       "seqNumber": 7,
+       "phaseId": "lock",
+       "originGatewayId": "5.47.165.186",
+       "originNetworkId": "Hyperledger-Fabric-JusticeChain",
+       "destinationGatewayId": "192.47.113.116",
+       "destinationNetworkId": "Ethereum",
+       "timestamp": "1606157333",
+       "payload": {
+       "messageType": "2pc-log",
+       "message": "LOCK_ASSET_ACK",
+       "votes": "none"
+   }
 
-   { "sessionId": "4eb424c8-aead-4e9e-a321-a160ac3909ac", "seqNumber":
-   7, "phaseId": "lock", "originGatewayId": "5.47.165.186",
-   "originNetworkId": "Hyperledger-Fabric-JusticeChain",
-   "destinationGatewayId": "192.47.113.116", "destinationNetworkId":
-   "Ethereum", "timestamp": "1606157333", "payload": { "messageType":
-   "2pc-log", "message": "LOCK_ASSET_ACK", "votes": "none" } ~~~
+                                  Figure 2
 
 4.  Crash Recovery Procedure
 

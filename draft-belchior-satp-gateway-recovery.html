@@ -1620,7 +1620,9 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
 
 </pre><a href="#section-3.2-6" class="pilcrow">¶</a>
 </div>
-<p id="section-3.2-7">"Version": "1.0",
+<div id="example-log-entry">
+<p id="section-3.2-7">/{
+  "Version": "1.0",
   "Session ID": "123e4567-e89b-12d3-a456-426655440000",
   "Sequence Number": 1,
   "SATP Phase": "Initialization",
@@ -1644,18 +1646,16 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
   "Access_control_profile": "GatewayOnly",
   "Operation": "init",
   "recovery message": "recovery_message_here",
-  "recovery payload": "recovery_payload_here"<a href="#section-3.2-7" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-3.2-8">
-<pre>
-{: #example-log-entry}
-
-Example of a log entry created by G2, acknowledging G1 locking an asset (phase 2.4 of the SATP protocol) :
-
-
-</pre><a href="#section-3.2-8" class="pilcrow">¶</a>
+  "recovery payload": "recovery_payload_here"
+/}
+~~~<a href="#section-3.2-7" class="pilcrow">¶</a></p>
 </div>
+<p id="section-3.2-8">Example of a log entry created by G2, acknowledging G1 locking an asset (phase 2.4 of the SATP protocol) :<a href="#section-3.2-8" class="pilcrow">¶</a></p>
 <div id="example-log-entry-two">
-<p id="section-3.2-9">{
+<figure id="figure-2">
+          <div class="alignLeft art-text artwork" id="section-3.2-9.1">
+<pre>
+{
     "sessionId": "4eb424c8-aead-4e9e-a321-a160ac3909ac",
     "seqNumber": 7,
     "phaseId": "lock",
@@ -1669,7 +1669,9 @@ Example of a log entry created by G2, acknowledging G1 locking an asset (phase 2
     "message": "LOCK_ASSET_ACK",
     "votes": "none"
 }
-~~~<a href="#section-3.2-9" class="pilcrow">¶</a></p>
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a></figcaption></figure>
 </div>
 </section>
 </div>
