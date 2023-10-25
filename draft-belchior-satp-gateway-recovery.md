@@ -144,7 +144,7 @@ From these primitives, other functions can be built:
 
 - getLastEntry(L): obtains the last log entry from log L.
 
--	getLog(L): retrieves the whole log L.
+- getLog(L): retrieves the whole log L.
 
 - updateLog(l1,l2): updates l1 based on l2 (uses getLogDiff and writeLogEntry).
 
@@ -188,16 +188,16 @@ The following example shows a simplified version log referring to the transfer i
 This example shows the sequence of logging operations over part of the first phase of SATP (simplified):
 
 1. At step 1, G1 writes an init-validate operation, meaning it will require G2 to initiate the validate function:
-   	This step generates a log entry (p1, 1, init-validate).
+   This step generates a log entry (p1, 1, init-validate).
 
 2. At step 2, G2 writes an exec-validate operation, meaning it will try to execute the validate function:
-   	This step generates a log entry (p1, 2, exec-validate).
+   This step generates a log entry (p1, 2, exec-validate).
 
 3. At step 3, G2 writes a done-validate operation, meaning it successfully executed the validate function:
-   	This step generates a log entry (p1, 3, done-validate).
+   This step generates a log entry (p1, 3, done-validate).
 
 4. At step 4, G2 writes an ack-validate operation, meaning it will send an acknowledgment to G1 regarding the done-validate:
-   	This step generates a log entry (p1, 4, ack-validate).
+   This step generates a log entry (p1, 4, ack-validate).
 
 Without loss of generality, the above logging model applies to all phases of SATP.
 
@@ -245,8 +245,8 @@ This example showcases the logging procedure step 2.4 of SATP (lock-assertion) b
      |Gateway G1|               |Gateway G2|                                   |Log API|
      `----------'               `----------'                                   `-------'
 
-~~~
-{: #satp-example}
+~
+{: #satp-example-lock-assertion}
 
 ## Log Storage Modes
 {: #log-storage-modes}
@@ -259,19 +259,19 @@ Apart from the enterprise log, a state log can be public or private, centralized
 In greater detail:
 
 1. Public decentralized log: log entries are stored on a decentralized public log (e.g., Ethereum blockchain, IPFS). Each gateway writes non-encrypted log entries to a decentralized log storage.
-		Although this is the best option for providing accountability of gateways, availability, and integrity of the logs, leading to shorter dispute resolution, this can lead to leak of information which can lead to privacy issues.
-		The integrity of the log can be asserted by hashing the entries and comparing it to each stored hash on the decentralized log storage.
-		A solution to the privacy problems could be given by gateways publishing a hash of the log entry plus metadata to the decentralized log storage instead of the log entries. Although this is a first step towards resolving privacy issues, a tradeoff with data availability exists.
-		In particular, this choice leads to lower availability guarantees since a gateway needs to wait for the counterparty gateway to deliver the logs in case logs need to be shared. In this case, the decentralized log storage acts as a notarizing service.
-		This mode is recommended when gateways operate in the  Relay Mode: Client-initiated Gateway to Gateway. This mode can also be used by the Direct Mode: Client to Multiple Gateway access mode because gateways may need to share state between themselves.
-		Note: the difference between the mentioned modes is that in Direct Mode: Client to Multiple Gateway, a single client/organization controls all the gateways, whereas, in the Relay Mode, gateways are controlled by different organizations.
+Although this is the best option for providing accountability of gateways, availability, and integrity of the logs, leading to shorter dispute resolution, this can lead to leak of information which can lead to privacy issues.
+The integrity of the log can be asserted by hashing the entries and comparing it to each stored hash on the decentralized log storage.
+A solution to the privacy problems could be given by gateways publishing a hash of the log entry plus metadata to the decentralized log storage instead of the log entries. Although this is a first step towards resolving privacy issues, a tradeoff with data availability exists.
+In particular, this choice leads to lower availability guarantees since a gateway needs to wait for the counterparty gateway to deliver the logs in case logs need to be shared. In this case, the decentralized log storage acts as a notarizing service.
+This mode is recommended when gateways operate in the  Relay Mode: Client-initiated Gateway to Gateway. This mode can also be used by the Direct Mode: Client to Multiple Gateway access mode because gateways may need to share state between themselves.
+Note: the difference between the mentioned modes is that in Direct Mode: Client to Multiple Gateway, a single client/organization controls all the gateways, whereas, in the Relay Mode, gateways are controlled by different organizations.
 
 2. Public centralized log: log entries are published in a bulletin that more organizations control. That bulletin can be updated or removed at any time. Accountability is only guaranteed provided that there are multiple copies of such bulletin by conflicting parties.
-		Availability and integrity can be obtained via redundancy.
+Availability and integrity can be obtained via redundancy.
 
 3. Private centralized log. Each gateway stores logs locally or in a cloud in the private log storage mode but does not share them by default with other gateways. If needed, logs are requested from the counterparty gateway.
-		Saving logs locally is faster than saving them on the respective ledger since issuing a transaction is several orders of magnitude slower than writing on a disk or accessing a cloud service.
-		Nonetheless, this model delivers weaker integrity and availability guarantees.
+Saving logs locally is faster than saving them on the respective ledger since issuing a transaction is several orders of magnitude slower than writing on a disk or accessing a cloud service.
+Nonetheless, this model delivers weaker integrity and availability guarantees.
 
 4. Private decentralized log. Each gateway stores logs in a private blockchain, and are shared with other gateways by default.
 
@@ -334,7 +334,6 @@ The following table maps the respective return values and response examples:
 {: #return-values-api-table}
 
 
-
 ### Response codes
 {: #response-codes}
 
@@ -349,7 +348,7 @@ A gateway stores the log entries in its log, and they capture gateways operation
 
 The recommended format for log entries is JSON, with protocol-specific mandatory fields supporting a free format field for plaintext or encrypted payloads directed at the SATP gateway or an underlying network. Although the recommended format is JSON, other formats can be used (e.g., XML).
 
-	The mandatory fields of a log entry, that SATP generates, are:
+The mandatory fields of a log entry, that SATP generates, are:
 
 - Version: SATP protocol Version (major, minor).
 
@@ -398,10 +397,10 @@ In addition to the attributes that belong to SATP s schema, each log entry REQUI
 - Access_control_profile REQUIRED: the profile regarding the confidentiality of the log entries being stored. Default is only the gateway that created the logs that can access them.
 
 - Operation: the high-level operation being executed by the gateway on that step.
-  	There are five types of operations: Operation init- states the intention of a node to execute a particular operation; Operation exec- expresses that the node is executing the operation; Operation done- states when a node successfully executes a step of the protocol;
-  	Operation ack- refers to when a node acknowledges a message received from another (e.g., the command executed); Operation fail- occurs when an agent fails to execute a specific step.
+  There are five types of operations: Operation init- states the intention of a node to execute a particular operation; Operation exec- expresses that the node is executing the operation; Operation done- states when a node successfully executes a step of the protocol;
+  Operation ack- refers to when a node acknowledges a message received from another (e.g., the command executed); Operation fail- occurs when an agent fails to execute a specific step.
 
-	Optional field entries are:
+Optional field entries are:
 
 - recovery message: the type of recovery message, if the gateway is involved in a recovery procedure.
 
@@ -410,7 +409,7 @@ In addition to the attributes that belong to SATP s schema, each log entry REQUI
 Example of a log entry created by G1, corresponding to locking an asset (phase 2.3 of the SATP protocol):
 
 ~~~
-{
+/{
   "Version": "1.0",
   "Session ID": "123e4567-e89b-12d3-a456-426655440000",
   "Sequence Number": 1,
@@ -436,7 +435,7 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
   "Operation": "init",
   "recovery message": "recovery_message_here",
   "recovery payload": "recovery_payload_here"
-}
+/}
 ~~~
 {: #example-log-entry}
 
@@ -445,18 +444,18 @@ Example of a log entry created by G2, acknowledging G1 locking an asset (phase 2
 
 ~~~
 {
-"sessionId": "4eb424c8-aead-4e9e-a321-a160ac3909ac",
-"seqNumber": 7,
-"phaseId": "lock",
-"originGatewayId": "5.47.165.186",
-"originNetworkId": "Hyperledger-Fabric-JusticeChain",
-"destinationGatewayId": "192.47.113.116",
-"destinationNetworkId": "Ethereum",
-"timestamp": "1606157333",
-"payload": {
-"messageType": "2pc-log",
-"message": "LOCK_ASSET_ACK",
-"votes": "none"
+    "sessionId": "4eb424c8-aead-4e9e-a321-a160ac3909ac",
+    "seqNumber": 7,
+    "phaseId": "lock",
+    "originGatewayId": "5.47.165.186",
+    "originNetworkId": "Hyperledger-Fabric-JusticeChain",
+    "destinationGatewayId": "192.47.113.116",
+    "destinationNetworkId": "Ethereum",
+    "timestamp": "1606157333",
+    "payload": {
+    "messageType": "2pc-log",
+    "message": "LOCK_ASSET_ACK",
+    "votes": "none"
 }
 ~~~
 {: #example-log-entry-two}
@@ -493,7 +492,7 @@ Finally, the gateway resumes the normal execution of SATP (session resumption).
 
 ## Recovery Procedure
 {: #rp}
-			The previous section explained the general procedure that gateways follow upon crashing. In more detail, for each SATP phase, we define the recovery procedure:
+The previous section explained the general procedure that gateways follow upon crashing. In more detail, for each SATP phase, we define the recovery procedure:
 
 ### Transfer Initiation Flow
 This phase of SATP follows the Crash Recovery Model from Section 6.1.
@@ -840,9 +839,9 @@ This section explains how the primary-backup mode works for crash recovery. Firs
 
 ## Gateway Replacement
 The gateway replacemenet protocol introduces an assumption. We assume every gateway has a valid X.509 certificate that was issued by its owner, which is the entity legally responsible for the gateway.
-			Moreover, in the extensions field of the certificate, there is a list containing the hash of the authorized backup gateways.
-			When the primary gateway crashes, a replacement is bootstrapped with the latest version of the local state, and it engages in a protocol with the counterparty gateway.
-			This protocol aims to establish trust between gateways and the creation of a new TLS session:
+Moreover, in the extensions field of the certificate, there is a list containing the hash of the authorized backup gateways.
+When the primary gateway crashes, a replacement is bootstrapped with the latest version of the local state, and it engages in a protocol with the counterparty gateway.
+This protocol aims to establish trust between gateways and the creation of a new TLS session:
 
 1. Validate the backup gateway certificate by running a certification path algorithm, which includes validating all the intermediate certificates up to a trusted root (can be the VASPs CA).
 
@@ -854,19 +853,19 @@ The gateway replacemenet protocol introduces an assumption. We assume every gate
 The backup gateway, on its turn, defines gateways to replace it in case of a crash (X.509 certificate extensions).
 
 # Security Considerations
-		We assume a trusted, authenticated, secure, reliable communication channel between gateways (i.e., messages cannot be spoofed and/or altered by an adversary) using TLS/HTTPS [TLS]. Clients support acceptable credential schemes such as OAuth2.0.
-		We assume the storage service used provides the means necessary to assure the logs' confidentiality and integrity, stored and in transit. The service must provide an authentication and authorization scheme, e.g., based on OAuth and OIDC [OIDC], and use secure channels based on TLS/HTTPS [TLS].
-		The present protocol is crash fault-tolerant, meaning that it handles gateways that crash for several reasons (e.g., power outage). The present protocol does not support Byzantine faults, where gateways can behave arbitrarily (including being malicious). This implies that both gateways are considered trusted. We assume logs are not tampered with or lost.
+We assume a trusted, authenticated, secure, reliable communication channel between gateways (i.e., messages cannot be spoofed and/or altered by an adversary) using TLS/HTTPS [TLS]. Clients support acceptable credential schemes such as OAuth2.0.
+We assume the storage service used provides the means necessary to assure the logs' confidentiality and integrity, stored and in transit. The service must provide an authentication and authorization scheme, e.g., based on OAuth and OIDC [OIDC], and use secure channels based on TLS/HTTPS [TLS].
+The present protocol is crash fault-tolerant, meaning that it handles gateways that crash for several reasons (e.g., power outage). The present protocol does not support Byzantine faults, where gateways can behave arbitrarily (including being malicious). This implies that both gateways are considered trusted. We assume logs are not tampered with or lost.
 
-		Log entries need integrity, availability, and confidentiality guarantees, as they are an attractive point of attack. Every log entry contains a hash of its payload for guaranteeing integrity.  If extra guarantees are needed (e.g., non-repudiation),  a log entry might be signed by its creator. Availability is guaranteed by the usage of the log storage API that connects a gateway to a dependable storage (local, external, or decentralized). Each underlying storage provides different guarantees. Access control can be enforced via the access control profile that each log can have associated with, i.e., the profile can be resolved, indicating who can access the log entry in which condition. Access control profiles can be implemented with access control lists for simple authorization. The authentication of the entities accessing the logs is done at the Log Storage API level (e.g., username+password authentication in local storage vs. decentralized access control).
+Log entries need integrity, availability, and confidentiality guarantees, as they are an attractive point of attack. Every log entry contains a hash of its payload for guaranteeing integrity.  If extra guarantees are needed (e.g., non-repudiation),  a log entry might be signed by its creator. Availability is guaranteed by the usage of the log storage API that connects a gateway to a dependable storage (local, external, or decentralized). Each underlying storage provides different guarantees. Access control can be enforced via the access control profile that each log can have associated with, i.e., the profile can be resolved, indicating who can access the log entry in which condition. Access control profiles can be implemented with access control lists for simple authorization. The authentication of the entities accessing the logs is done at the Log Storage API level (e.g., username+password authentication in local storage vs. decentralized access control).
 
-		For extra guarantees, the nodes running the log storage API (or the gateway nodes themselves) can be protected by hardening technologies such as Intel SGX [CD16].
+For extra guarantees, the nodes running the log storage API (or the gateway nodes themselves) can be protected by hardening technologies such as Intel SGX [CD16].
 
 
 
 # Performance Considerations
-			After the session setup using asymmetric-cryptography, the authenticated messages in the TLS Record Protocol utilize symmetric-key operations (using the session key). Since symmetric-key
-			operations are much faster than public-key operations, a persistent TLS connection delivers performance suitable for quickly exchange of log entries across gateways. Upon a crash, gateways might employ their best effort for resuming the crashed session.
+After the session setup using asymmetric-cryptography, the authenticated messages in the TLS Record Protocol utilize symmetric-key operations (using the session key). Since symmetric-key
+operations are much faster than public-key operations, a persistent TLS connection delivers performance suitable for quickly exchange of log entries across gateways. Upon a crash, gateways might employ their best effort for resuming the crashed session.
 
 # Assumptions
 For the protocol to work correctly, a few assumptions are taken: i) the crashed gateways eventually recover, at most for a fixed time (or are replaced); ii) Calls to the log API do not fail.
