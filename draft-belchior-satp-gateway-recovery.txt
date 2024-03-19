@@ -5,11 +5,11 @@
 Secure Asset Transfer Protocol                               R. Belchior
 Internet-Draft                     INESC-ID, Técnico Lisboa, Blockdaemon
 Intended status: Informational                                M. Correia
-Expires: 27 April 2024                                        A. Augusto
+Expires: 20 September 2024                                    A. Augusto
                                                 INESC-ID, Técnico Lisboa
                                                              T. Hardjono
                                                                      MIT
-                                                         25 October 2023
+                                                           19 March 2024
 
 
  Secure Asset Transfer Protocol (SATP) Gateway Crash Recovery Mechanism
@@ -57,11 +57,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 April 2024.
+   This Internet-Draft will expire on 20 September 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -547,7 +547,7 @@ Table of Contents
    *  logging_profile REQUIRED: contains the profile regarding the
       logging procedure.  Default is a local store.
 
-   *  Message_signature REQUIRED: Gateway EDCSA signature over the log
+   *  Message_signature REQUIRED: Gateway ECDSA signature over the log
       entry.
 
    *  Last_entry_hash REQUIRED: Hash of previous log entry.
@@ -597,7 +597,7 @@ Table of Contents
      "destination_gateway_pubkey": "def456",
      "destination_gateway_system": "system2",
      "logging_profile": "Local Store",
-     "Message_signature": "edcsa_signature_here",
+     "Message_signature": "ecdsa_signature_here",
      "Last_entry_hash": "hash_of_last_entry",
      "Access_control_profile": "GatewayOnly",
      "Operation": "init",
