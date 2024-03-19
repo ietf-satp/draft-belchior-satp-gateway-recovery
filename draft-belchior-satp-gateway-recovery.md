@@ -412,7 +412,7 @@ In addition to the attributes that belong to SATP s schema, each log entry REQUI
 
 - logging_profile REQUIRED: contains the profile regarding the logging procedure. Default is a local store.
 
-- Message_signature REQUIRED: Gateway EDCSA signature over the log entry.
+- Message_signature REQUIRED: Gateway ECDSA signature over the log entry.
 
 - Last_entry_hash REQUIRED: Hash of previous log entry.
 
@@ -451,7 +451,7 @@ Example of a log entry created by G1, corresponding to locking an asset (phase 2
   "destination_gateway_pubkey": "def456",
   "destination_gateway_system": "system2",
   "logging_profile": "Local Store",
-  "Message_signature": "edcsa_signature_here",
+  "Message_signature": "ecdsa_signature_here",
   "Last_entry_hash": "hash_of_last_entry",
   "Access_control_profile": "GatewayOnly",
   "Operation": "init",
