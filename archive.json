@@ -1,0 +1,87 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-04-23T01:07:46.344114+00:00",
+  "repo": "ietf-satp/draft-belchior-satp-gateway-recovery",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOKk2Lms508jxg",
+      "title": "Define rollback for mint and lock phases",
+      "url": "https://github.com/ietf-satp/draft-belchior-satp-gateway-recovery/issues/1",
+      "state": "OPEN",
+      "author": "RafaelAPB",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-10-25T18:53:53Z",
+      "updatedAt": "2023-10-25T18:53:53Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOKk2Lms508kGR",
+      "title": "Formalize protocol",
+      "url": "https://github.com/ietf-satp/draft-belchior-satp-gateway-recovery/issues/2",
+      "state": "OPEN",
+      "author": "RafaelAPB",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "A good chunk of this was done in our paper Hermes: https://www.techrxiv.org/articles/preprint/HERMES_Fault-Tolerant_Middleware_for_Blockchain_Interoperability/14120291\r\n\r\nHowever, it would be beneficial to use formal methods to guarantee that our protocol provides desirable properties in all situations",
+      "createdAt": "2023-10-25T18:54:49Z",
+      "updatedAt": "2023-10-25T18:54:49Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": []
+}
