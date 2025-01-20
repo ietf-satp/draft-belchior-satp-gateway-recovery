@@ -565,6 +565,8 @@ The parameters of the recovery message payload consist of the following:
 
 - Session ID: a unique identifier (UUIDv2) representing a session.
 
+- Context ID: a unique identifier (UUIDv2) representing a session context {{?I-D.draft-avrilionis-satp-setup-stage-01}}.
+
 - Message Type REQUIRED: urn:ietf:SATP-2pc:msgtype:recover-msg.
 
 - SATP phase: latest SATP phase registered.
@@ -589,6 +591,8 @@ The parameters of the recover update payload consist of the following:
 
 - Session ID: a unique identifier (UUIDv2) representing a session.
 
+- Context ID: a unique identifier (UUIDv2) representing a session context {{?I-D.draft-avrilionis-satp-setup-stage-01}}.
+
 - Message Type REQUIRED: urn:ietf:SATP-2pc:msgtype:recover-update-msg.
 
 - Hash Recover Message REQUIRED. The hash of previous message.
@@ -607,6 +611,8 @@ The parameters of this message consist of the following:
 
 - Session ID: a unique identifier (UUIDv2) representing a session.
 
+- Context ID: a unique identifier (UUIDv2) representing a session context {{?I-D.draft-avrilionis-satp-setup-stage-01}}.
+
 - Message Type REQUIRED: urn:ietf:SATP-2pc:msgtype:recover-update-ack-msg.
 
 - Hash Recover Update Message REQUIRED. The hash of previous message.
@@ -622,6 +628,8 @@ The parameters of this message consist of the following:
 A rollback message is sent by a gateway that initiates a rollback. The parameters of this message consist of the following:
 
 - Session ID: a unique identifier (UUIDv2) representing a session.
+
+- Context ID: a unique identifier (UUIDv2) representing a session context {{?I-D.draft-avrilionis-satp-setup-stage-01}}.
 
 - Message Type REQUIRED: urn:ietf:SATP-2pc:msgtype:rollback-msg.
 
@@ -640,6 +648,8 @@ The counterparty gateway sends the rollback-ack message to the recovered gateway
 The parameters of this message consist of the following:
 
 - Session ID: a unique identifier (UUIDv2) representing a session.
+
+- Context ID: a unique identifier (UUIDv2) representing a session context {{?I-D.draft-avrilionis-satp-setup-stage-01}}.
 
 - Message Type REQUIRED: urn:ietf:SATP-2pc:msgtype:rollback-ack-msg.
 
@@ -893,7 +903,6 @@ After the session setup using asymmetric-cryptography, the authenticated message
 operations are much faster than public-key operations, a persistent TLS connection delivers performance suitable for quickly exchange of log entries across gateways. Upon a crash, gateways might employ their best effort for resuming the crashed session.
 
 # Assumptions
-For the protocol to work correctly, a few assumptions are taken: i) the crashed gateways eventually recover, at most for a fixed time (or are replaced); ii) Calls to the log API do not fail.
-
+For the protocol to work correctly, a few assumptions are taken: i) the crashed gateways eventually recover, at most for a fixed time (or are replaced); ii) The Log API is reliable - all requests are served up to a pre-defined time bound.
 
 --- back
