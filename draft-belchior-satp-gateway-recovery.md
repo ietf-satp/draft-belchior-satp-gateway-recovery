@@ -376,6 +376,8 @@ The mandatory fields of a log entry, that SATP generates, are:
 
 - Session ID: a unique identifier (UUIDv2) representing a session.
 
+- Context ID: a unique identifier (UUIDv2) representing a session context {{?I-D.draft-avrilionis-satp-setup-stage-01}}.
+
 - Sequence Number: monotonically increasing counter that uniquely represents a message from a session.
 
 - SATP Phase: current SATP phase.
@@ -467,6 +469,7 @@ Example of a log entry created by G2, acknowledging G1 locking an asset (phase 2
 ~~~
 {
     "sessionId": "4eb424c8-aead-4e9e-a321-a160ac3909ac",
+    "contextId": "5eb424c8-aead-4e9e-a321-a160ac3909ac",
     "seqNumber": 7,
     "phaseId": "lock",
     "originGatewayId": "5.47.165.186",
