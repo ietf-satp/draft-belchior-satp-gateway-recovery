@@ -566,7 +566,6 @@ The parameters of the recovery message payload consist of the following:
 - Session ID: a unique identifier (UUIDv2) representing a session.
 
 - Context ID: a unique identifier (UUIDv2) representing a session context {{?I-D.draft-avrilionis-satp-setup-stage-01}}.
-
 - Message Type REQUIRED: urn:ietf:SATP-2pc:msgtype:recover-msg.
 
 - SATP phase: latest SATP phase registered.
@@ -612,7 +611,6 @@ The parameters of this message consist of the following:
 - Session ID: a unique identifier (UUIDv2) representing a session.
 
 - Context ID: a unique identifier (UUIDv2) representing a session context {{?I-D.draft-avrilionis-satp-setup-stage-01}}.
-
 - Message Type REQUIRED: urn:ietf:SATP-2pc:msgtype:recover-update-ack-msg.
 
 - Hash Recover Update Message REQUIRED. The hash of previous message.
@@ -630,7 +628,6 @@ A rollback message is sent by a gateway that initiates a rollback. The parameter
 - Session ID: a unique identifier (UUIDv2) representing a session.
 
 - Context ID: a unique identifier (UUIDv2) representing a session context {{?I-D.draft-avrilionis-satp-setup-stage-01}}.
-
 - Message Type REQUIRED: urn:ietf:SATP-2pc:msgtype:rollback-msg.
 
 - success: true/false.
@@ -650,7 +647,6 @@ The parameters of this message consist of the following:
 - Session ID: a unique identifier (UUIDv2) representing a session.
 
 - Context ID: a unique identifier (UUIDv2) representing a session context {{?I-D.draft-avrilionis-satp-setup-stage-01}}.
-
 - Message Type REQUIRED: urn:ietf:SATP-2pc:msgtype:rollback-ack-msg.
 
 - success: true/false.
