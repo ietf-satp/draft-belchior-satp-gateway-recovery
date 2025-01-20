@@ -5,11 +5,11 @@
 Secure Asset Transfer Protocol                               R. Belchior
 Internet-Draft                     INESC-ID, Técnico Lisboa, Blockdaemon
 Intended status: Informational                                M. Correia
-Expires: 20 September 2024                                    A. Augusto
+Expires: 24 July 2025                                         A. Augusto
                                                 INESC-ID, Técnico Lisboa
                                                              T. Hardjono
                                                                      MIT
-                                                           19 March 2024
+                                                         20 January 2025
 
 
  Secure Asset Transfer Protocol (SATP) Gateway Crash Recovery Mechanism
@@ -57,11 +57,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 September 2024.
+   This Internet-Draft will expire on 24 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -502,6 +502,9 @@ Table of Contents
 
    *  Session ID: a unique identifier (UUIDv2) representing a session.
 
+   *  Context ID: a unique identifier (UUIDv2) representing a session
+      context [I-D.draft-avrilionis-satp-setup-stage-01].
+
    *  Sequence Number: monotonically increasing counter that uniquely
       represents a message from a session.
 
@@ -612,6 +615,7 @@ Table of Contents
 
    {
        "sessionId": "4eb424c8-aead-4e9e-a321-a160ac3909ac",
+       "contextId": "5eb424c8-aead-4e9e-a321-a160ac3909ac",
        "seqNumber": 7,
        "phaseId": "lock",
        "originGatewayId": "5.47.165.186",
@@ -1171,12 +1175,19 @@ Table of Contents
               of distributed resources", 1976,
               <http://openid.net/specs/openid-connect-core-1_0.html>.
 
+   [I-D.draft-avrilionis-satp-setup-stage-01]
+              Avrilionis, D. and T. Hardjono, "SATP Setup Stage", Work
+              in Progress, Internet-Draft, draft-avrilionis-satp-setup-
+              stage-01, 16 December 2024,
+              <https://datatracker.ietf.org/doc/html/draft-avrilionis-
+              satp-setup-stage-01>.
+
    [I-D.draft-ietf-satp-core]
-              Hargreaves, M., Hardjono, T., and R. Belchior, "Secure
-              Asset Transfer Protocol (SATP)", Work in Progress,
-              Internet-Draft, draft-ietf-satp-core-02, 8 July 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-satp-
-              core-02>.
+              Hargreaves, M., Hardjono, T., Belchior, R., and V.
+              Ramakrishna, "Secure Asset Transfer Protocol (SATP) Core",
+              Work in Progress, Internet-Draft, draft-ietf-satp-core-08,
+              10 January 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-satp-core-08>.
 
    [OIDC]     Sakimura, N., Bradley, J., Jones, M., de Medeiros, B., and
               C. Mortimore, "OpenID Connect Core 1.0", November 2014,
