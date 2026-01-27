@@ -89,7 +89,7 @@ normative:
 
 --- abstract
 
-This memo describes the crash recovery mechanism for the Secure Asset Transfer Protocol (SATP). The goal of this draft is to specify the message flow that implements a crash recovery mechanism. The mechanism assures that gateways running SATP are able to recover faults, enforcing ACID properties for asset transfers across ledgers (i.e., double spend does not occur).
+This memo describes the crash recovery mechanism for the Secure Asset Transfer Protocol (SATP). The goal of this draft is to specify the message flow that implements a crash recovery mechanism, composed of self-healing and rollback sub-protocols. The mechanism assures that gateways running SATP are able to recover faults, enforcing ACID properties for asset transfers across ledgers (i.e., double spend does not occur).
 
 
 --- middle
