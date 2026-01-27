@@ -5,11 +5,11 @@
 Secure Asset Transfer Protocol                               R. Belchior
 Internet-Draft                     INESC-ID, Técnico Lisboa, Blockdaemon
 Intended status: Informational                                M. Correia
-Expires: 24 July 2025                                         A. Augusto
+Expires: 31 July 2026                                         A. Augusto
                                                 INESC-ID, Técnico Lisboa
                                                              T. Hardjono
                                                                      MIT
-                                                         20 January 2025
+                                                         27 January 2026
 
 
  Secure Asset Transfer Protocol (SATP) Gateway Crash Recovery Mechanism
@@ -19,10 +19,11 @@ Abstract
 
    This memo describes the crash recovery mechanism for the Secure Asset
    Transfer Protocol (SATP).  The goal of this draft is to specify the
-   message flow that implements a crash recovery mechanism.  The
-   mechanism assures that gateways running SATP are able to recover
-   faults, enforcing ACID properties for asset transfers across ledgers
-   (i.e., double spend does not occur).
+   message flow that implements a crash recovery mechanism, composed of
+   self-healing and rollback sub-protocols.  The mechanism assures that
+   gateways running SATP are able to recover faults, enforcing ACID
+   properties for asset transfers across ledgers (i.e., double spend
+   does not occur).
 
 About This Document
 
@@ -57,11 +58,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 July 2025.
+   This Internet-Draft will expire on 31 July 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1199,11 +1200,12 @@ Table of Contents
               satp-setup-stage-01>.
 
    [I-D.draft-ietf-satp-core]
-              Hargreaves, M., Hardjono, T., Belchior, R., and V.
-              Ramakrishna, "Secure Asset Transfer Protocol (SATP) Core",
-              Work in Progress, Internet-Draft, draft-ietf-satp-core-08,
-              10 January 2025, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-satp-core-08>.
+              Hargreaves, M., Hardjono, T., Belchior, R., Ramakrishna,
+              V., and A. Chiriac, "Secure Asset Transfer Protocol (SATP)
+              Core", Work in Progress, Internet-Draft, draft-ietf-satp-
+              core-12, 2 November 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-satp-
+              core-12>.
 
    [OIDC]     Sakimura, N., Bradley, J., Jones, M., de Medeiros, B., and
               C. Mortimore, "OpenID Connect Core 1.0", November 2014,
