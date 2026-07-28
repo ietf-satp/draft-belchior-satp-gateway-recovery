@@ -3,13 +3,13 @@
 
 
 Secure Asset Transfer Protocol                               R. Belchior
-Internet-Draft                     INESC-ID, Técnico Lisboa, Blockdaemon
+Internet-Draft                                                  INESC-ID
 Intended status: Informational                                M. Correia
-Expires: 31 July 2026                                         A. Augusto
+Expires: 29 January 2027                                      A. Augusto
                                                 INESC-ID, Técnico Lisboa
                                                              T. Hardjono
                                                                      MIT
-                                                         27 January 2026
+                                                            28 July 2026
 
 
  Secure Asset Transfer Protocol (SATP) Gateway Crash Recovery Mechanism
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 July 2026.
+   This Internet-Draft will expire on 29 January 2027.
 
 Copyright Notice
 
@@ -1203,9 +1203,9 @@ Table of Contents
               Hargreaves, M., Hardjono, T., Belchior, R., Ramakrishna,
               V., and A. Chiriac, "Secure Asset Transfer Protocol (SATP)
               Core", Work in Progress, Internet-Draft, draft-ietf-satp-
-              core-12, 2 November 2025,
+              core-14, 19 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-satp-
-              core-12>.
+              core-14>.
 
    [OIDC]     Sakimura, N., Bradley, J., Jones, M., de Medeiros, B., and
               C. Mortimore, "OpenID Connect Core 1.0", November 2014,
@@ -1214,7 +1214,7 @@ Table of Contents
 Authors' Addresses
 
    Rafael Belchior
-   INESC-ID, Técnico Lisboa, Blockdaemon
+   INESC-ID
    Email: rafael.belchior@tecnico.ulisboa.pt
 
 
