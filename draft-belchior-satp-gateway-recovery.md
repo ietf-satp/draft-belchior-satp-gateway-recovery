@@ -39,7 +39,7 @@ author:
   -
     ins: R. Belchior
     name: Rafael Belchior
-    organization: INESC-ID, Técnico Lisboa, Blockdaemon
+    organization: INESC-ID
     email: rafael.belchior@tecnico.ulisboa.pt
   -
     ins: M. Correia
