@@ -64,7 +64,6 @@
   src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-
 @font-face {
   font-family: 'Lora';
   font-style: italic;
@@ -113,7 +112,6 @@
   src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
 @font-face {
   font-family: 'Lora';
   font-style: normal;
@@ -178,7 +176,6 @@
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 }
 
 @font-face {
@@ -1051,7 +1048,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Belchior, et al.</td>
-<td class="center">Expires 29 January 2027</td>
+<td class="center">Expires 30 January 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1061,12 @@ svg {
 <dd class="internet-draft">draft-belchior-satp-gateway-recovery-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-07-28" class="published">28 July 2026</time>
+<time datetime="2026-07-29" class="published">29 July 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-01-29">29 January 2027</time></dd>
+<dd class="expires"><time datetime="2027-01-30">30 January 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1131,7 +1128,7 @@ svg {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 29 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 30 January 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1423,7 +1420,6 @@ For each protocol step a gateway performs, a log entry is created immediately be
      ,--.                     ,--.                                 ,-------.
      |G1|                     |G2|                                 |Log API|
      `--'                     `--'                                 `-------'
-
 </pre>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a></figcaption></figure>
@@ -1460,45 +1456,44 @@ This step generates a log entry (p1, 4, ack-validate).<a href="#section-3.1-3.4.
 <figure id="figure-2">
           <div class="alignLeft art-text artwork" id="section-3.2-2.1">
 <pre>
-    ,----------.               ,----------.                                   ,-------.
-     |Gateway G1|               |Gateway G2|                                   |Log API|
-     `----------'               `----------'                                   `-------'
-          |----.                     |                                             |
-          |    | 1 using log api     |                                             |
-          |&lt;---'                     |                                             |
-          |                          |                                             |
-          |              2 writeLogEntry(2,2.2-1,init-lock-assertion)              |
-          | -----------------------------------------------------------------------&gt;
-          |                          |                                             |
-          |  3 Lock-Assertion (2.2)  |                                             |
-          | -------------------------&gt;                                             |
-          |                          |                                             |
-          |                          | 4 writeLogEntry(2,2.2-2,exec-lock-assertion)|
-          |                          | --------------------------------------------&gt;
-          |                          |                                             |
-          |                          |----.                                        |
-          |                          |    | 5 execute lock assertion phase         |
-          |                          |&lt;---'                                        |
-          |                          |                                             |
-          |                          | 6 writeLogEntry(2,2.2-3,done-lock-assertion)|
-          |                          | --------------------------------------------&gt;
-          |                          |                                             |
-          |                          |----.                                        |
-          |                          |    | 7 generate lock assertion receipt      |
-          |                          |&lt;---'                                        |
-          |                          |                                             |
-          |                          |  8 (optional) write lock assertion receipt  |
-          |                          | --------------------------------------------&gt;
-          |                          |                                             |
-          |                          | 9 writeLogEntry(2,2.2-4,ack-lock-assertion) |
-          |                          | --------------------------------------------&gt;
-          |                          |                                             |
-          | 10 lock assertion receipt|                                             |
-          | &lt;-------------------------                                             |
-     ,----------.               ,----------.                                   ,-------.
-     |Gateway G1|               |Gateway G2|                                   |Log API|
-     `----------'               `----------'                                   `-------'
-
+     ,--.                     ,--.                                 ,-------.
+     |G1|                     |G2|                                 |Log API|
+     `--'                     `--'                                 `-------'
+      |----.                   |                                       |
+      |    | 1 using log api   |                                       |
+      |&lt;---'                   |                                       |
+      |                        |                                       |
+      |          2 writeLogEntry(2,2.2-1,init-lock-assertion)          |
+      | ---------------------------------------------------------------&gt;
+      |                        |                                       |
+      | 3 Lock-Assertion (2.2) |                                       |
+      | -----------------------&gt;                                       |
+      |                        |                                       |
+      |                        | 4 writeLogEntry(2,2.2-2,exec-lock)    |
+      |                        | --------------------------------------&gt;
+      |                        |                                       |
+      |                        |----.                                  |
+      |                        |    | 5 execute lock assertion phase   |
+      |                        |&lt;---'                                  |
+      |                        |                                       |
+      |                        | 6 writeLogEntry(2,2.2-3,done-lock)    |
+      |                        | --------------------------------------&gt;
+      |                        |                                       |
+      |                        |----.                                  |
+      |                        |    | 7 generate lock assertion receipt|
+      |                        |&lt;---'                                  |
+      |                        |                                       |
+      |                        | 8 (opt.) write lock-assertion receipt |
+      |                        | --------------------------------------&gt;
+      |                        |                                       |
+      |                        | 9 writeLogEntry(2,2.2-4,ack-lock)     |
+      |                        | --------------------------------------&gt;
+      |                        |                                       |
+      | 10 lock assertion rcpt |                                       |
+      | &lt;-----------------------                                       |
+     ,--.                     ,--.                                 ,-------.
+     |G1|                     |G2|                                 |Log API|
+     `--'                     `--'                                 `-------'
 </pre>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a></figcaption></figure>
@@ -2375,7 +2370,7 @@ operations are much faster than public-key operations, a persistent TLS connecti
 <dd class="break"></dd>
 <dt id="I-D.draft-ietf-satp-core">[I-D.draft-ietf-satp-core]</dt>
         <dd>
-<span class="refAuthor">Hargreaves, M.</span>, <span class="refAuthor">Hardjono, T.</span>, <span class="refAuthor">Belchior, R.</span>, <span class="refAuthor">Ramakrishna, V.</span>, and <span class="refAuthor">A. Chiriac</span>, <span class="refTitle">"Secure Asset Transfer Protocol (SATP) Core"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-satp-core-14</span>, <time datetime="2026-07-19" class="refDate">19 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-satp-core-14">https://datatracker.ietf.org/doc/html/draft-ietf-satp-core-14</a>&gt;</span>. </dd>
+<span class="refAuthor">Hargreaves, M.</span>, <span class="refAuthor">Hardjono, T.</span>, <span class="refAuthor">Belchior, R.</span>, <span class="refAuthor">Ramakrishna, V.</span>, and <span class="refAuthor">A. Chiriac</span>, <span class="refTitle">"Secure Asset Transfer Protocol (SATP) Core"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-satp-core-15</span>, <time datetime="2026-07-28" class="refDate">28 July 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-satp-core-15">https://datatracker.ietf.org/doc/html/draft-ietf-satp-core-15</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="OIDC">[OIDC]</dt>
       <dd>

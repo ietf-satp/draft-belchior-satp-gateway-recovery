@@ -5,11 +5,11 @@
 Secure Asset Transfer Protocol                               R. Belchior
 Internet-Draft                                                  INESC-ID
 Intended status: Informational                                M. Correia
-Expires: 29 January 2027                                      A. Augusto
+Expires: 30 January 2027                                      A. Augusto
                                                 INESC-ID, Técnico Lisboa
                                                              T. Hardjono
                                                                      MIT
-                                                            28 July 2026
+                                                            29 July 2026
 
 
  Secure Asset Transfer Protocol (SATP) Gateway Crash Recovery Mechanism
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 January 2027.
+   This Internet-Draft will expire on 30 January 2027.
 
 Copyright Notice
 
@@ -300,44 +300,44 @@ Table of Contents
    This example showcases the logging procedure step 2.4 of SATP (lock-
    assertion) by both gateways.
 
-    ,----------.               ,----------.                                   ,-------.
-     |Gateway G1|               |Gateway G2|                                   |Log API|
-     `----------'               `----------'                                   `-------'
-          |----.                     |                                             |
-          |    | 1 using log api     |                                             |
-          |<---'                     |                                             |
-          |                          |                                             |
-          |              2 writeLogEntry(2,2.2-1,init-lock-assertion)              |
-          | ----------------------------------------------------------------------->
-          |                          |                                             |
-          |  3 Lock-Assertion (2.2)  |                                             |
-          | ------------------------->                                             |
-          |                          |                                             |
-          |                          | 4 writeLogEntry(2,2.2-2,exec-lock-assertion)|
-          |                          | -------------------------------------------->
-          |                          |                                             |
-          |                          |----.                                        |
-          |                          |    | 5 execute lock assertion phase         |
-          |                          |<---'                                        |
-          |                          |                                             |
-          |                          | 6 writeLogEntry(2,2.2-3,done-lock-assertion)|
-          |                          | -------------------------------------------->
-          |                          |                                             |
-          |                          |----.                                        |
-          |                          |    | 7 generate lock assertion receipt      |
-          |                          |<---'                                        |
-          |                          |                                             |
-          |                          |  8 (optional) write lock assertion receipt  |
-          |                          | -------------------------------------------->
-          |                          |                                             |
-          |                          | 9 writeLogEntry(2,2.2-4,ack-lock-assertion) |
-          |                          | -------------------------------------------->
-          |                          |                                             |
-          | 10 lock assertion receipt|                                             |
-          | <-------------------------                                             |
-     ,----------.               ,----------.                                   ,-------.
-     |Gateway G1|               |Gateway G2|                                   |Log API|
-     `----------'               `----------'                                   `-------'
+     ,--.                     ,--.                                 ,-------.
+     |G1|                     |G2|                                 |Log API|
+     `--'                     `--'                                 `-------'
+      |----.                   |                                       |
+      |    | 1 using log api   |                                       |
+      |<---'                   |                                       |
+      |                        |                                       |
+      |          2 writeLogEntry(2,2.2-1,init-lock-assertion)          |
+      | --------------------------------------------------------------->
+      |                        |                                       |
+      | 3 Lock-Assertion (2.2) |                                       |
+      | ----------------------->                                       |
+      |                        |                                       |
+      |                        | 4 writeLogEntry(2,2.2-2,exec-lock)    |
+      |                        | -------------------------------------->
+      |                        |                                       |
+      |                        |----.                                  |
+      |                        |    | 5 execute lock assertion phase   |
+      |                        |<---'                                  |
+      |                        |                                       |
+      |                        | 6 writeLogEntry(2,2.2-3,done-lock)    |
+      |                        | -------------------------------------->
+      |                        |                                       |
+      |                        |----.                                  |
+      |                        |    | 7 generate lock assertion receipt|
+      |                        |<---'                                  |
+      |                        |                                       |
+      |                        | 8 (opt.) write lock-assertion receipt |
+      |                        | -------------------------------------->
+      |                        |                                       |
+      |                        | 9 writeLogEntry(2,2.2-4,ack-lock)     |
+      |                        | -------------------------------------->
+      |                        |                                       |
+      | 10 lock assertion rcpt |                                       |
+      | <-----------------------                                       |
+     ,--.                     ,--.                                 ,-------.
+     |G1|                     |G2|                                 |Log API|
+     `--'                     `--'                                 `-------'
 
                                Figure 2
 
@@ -1203,9 +1203,9 @@ Table of Contents
               Hargreaves, M., Hardjono, T., Belchior, R., Ramakrishna,
               V., and A. Chiriac, "Secure Asset Transfer Protocol (SATP)
               Core", Work in Progress, Internet-Draft, draft-ietf-satp-
-              core-14, 19 July 2026,
+              core-15, 28 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-satp-
-              core-14>.
+              core-15>.
 
    [OIDC]     Sakimura, N., Bradley, J., Jones, M., de Medeiros, B., and
               C. Mortimore, "OpenID Connect Core 1.0", November 2014,
