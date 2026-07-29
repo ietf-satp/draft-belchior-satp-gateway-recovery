@@ -175,7 +175,6 @@ The following example shows a simplified version log referring to the transfer i
 ## Example
 
 ~~~
-
      ,--.                     ,--.                                 ,-------.
      |G1|                     |G2|                                 |Log API|
      `--'                     `--'                                 `-------'
@@ -203,7 +202,6 @@ The following example shows a simplified version log referring to the transfer i
      ,--.                     ,--.                                 ,-------.
      |G1|                     |G2|                                 |Log API|
      `--'                     `--'                                 `-------'
-
 ~~~
 {: #example-log-model}
 
@@ -228,45 +226,44 @@ Without loss of generality, the above logging model applies to all phases of SAT
 This example showcases the logging procedure step 2.4 of SATP (lock-assertion) by both gateways.
 
 ~~~
-    ,----------.               ,----------.                                   ,-------.
-     |Gateway G1|               |Gateway G2|                                   |Log API|
-     `----------'               `----------'                                   `-------'
-          |----.                     |                                             |
-          |    | 1 using log api     |                                             |
-          |<---'                     |                                             |
-          |                          |                                             |
-          |              2 writeLogEntry(2,2.2-1,init-lock-assertion)              |
-          | ----------------------------------------------------------------------->
-          |                          |                                             |
-          |  3 Lock-Assertion (2.2)  |                                             |
-          | ------------------------->                                             |
-          |                          |                                             |
-          |                          | 4 writeLogEntry(2,2.2-2,exec-lock-assertion)|
-          |                          | -------------------------------------------->
-          |                          |                                             |
-          |                          |----.                                        |
-          |                          |    | 5 execute lock assertion phase         |
-          |                          |<---'                                        |
-          |                          |                                             |
-          |                          | 6 writeLogEntry(2,2.2-3,done-lock-assertion)|
-          |                          | -------------------------------------------->
-          |                          |                                             |
-          |                          |----.                                        |
-          |                          |    | 7 generate lock assertion receipt      |
-          |                          |<---'                                        |
-          |                          |                                             |
-          |                          |  8 (optional) write lock assertion receipt  |
-          |                          | -------------------------------------------->
-          |                          |                                             |
-          |                          | 9 writeLogEntry(2,2.2-4,ack-lock-assertion) |
-          |                          | -------------------------------------------->
-          |                          |                                             |
-          | 10 lock assertion receipt|                                             |
-          | <-------------------------                                             |
-     ,----------.               ,----------.                                   ,-------.
-     |Gateway G1|               |Gateway G2|                                   |Log API|
-     `----------'               `----------'                                   `-------'
-
+     ,--.                     ,--.                                 ,-------.
+     |G1|                     |G2|                                 |Log API|
+     `--'                     `--'                                 `-------'
+      |----.                   |                                       |
+      |    | 1 using log api   |                                       |
+      |<---'                   |                                       |
+      |                        |                                       |
+      |          2 writeLogEntry(2,2.2-1,init-lock-assertion)          |
+      | --------------------------------------------------------------->
+      |                        |                                       |
+      | 3 Lock-Assertion (2.2) |                                       |
+      | ----------------------->                                       |
+      |                        |                                       |
+      |                        | 4 writeLogEntry(2,2.2-2,exec-lock)    |
+      |                        | -------------------------------------->
+      |                        |                                       |
+      |                        |----.                                  |
+      |                        |    | 5 execute lock assertion phase   |
+      |                        |<---'                                  |
+      |                        |                                       |
+      |                        | 6 writeLogEntry(2,2.2-3,done-lock)    |
+      |                        | -------------------------------------->
+      |                        |                                       |
+      |                        |----.                                  |
+      |                        |    | 7 generate lock assertion receipt|
+      |                        |<---'                                  |
+      |                        |                                       |
+      |                        | 8 (opt.) write lock-assertion receipt |
+      |                        | -------------------------------------->
+      |                        |                                       |
+      |                        | 9 writeLogEntry(2,2.2-4,ack-lock)     |
+      |                        | -------------------------------------->
+      |                        |                                       |
+      | 10 lock assertion rcpt |                                       |
+      | <-----------------------                                       |
+     ,--.                     ,--.                                 ,-------.
+     |G1|                     |G2|                                 |Log API|
+     `--'                     `--'                                 `-------'
 ~~~
 {: #satp-example-lock-assertion}
 
